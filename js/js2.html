@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+<script src="http://code.jquery.com/jquery-1.5.js"></script>
+</head>
+<style >
+	h2{
+	text-decoration: underline;
+	color:green;
+	
+	}
+	#send{
+        background-color:green; 
+        border-color: green;
+
+	}
+	#articles{
+		background-color:#CCCACE;
+		padding:10px;
+	}
+	.form-control:valid {
+  		border-color: #00FF7F;
+	}
+</style>
+<body>
+	<br><br>
+ 	<div class="container col-lg-5">
+ 		<h2>ДОБАВЛЕНИЕ КОММЕНТАРИЯ</h2>
+ 		<form id = "form1">
+ 			<div class="form-group" id="form_input">
+ 				<label for="name">Имя</label>
+ 				<input type="text"  class="form-control" id="name" maxlength="30" placeholder="Введите имя и отчество" required ><br><br>
+
+				<label for="email">Email</label>
+ 				<input type="text" class="form-control" id="email" placeholder="Ваш email" required ><br><br>
+
+				<label for="number">Телефон</label>
+ 				<input type="text" class="form-control"  id="number" placeholder="Ваш телефон" required ><br><br>
+ 			</div>
+
+ 			<div class="form-group">
+ 				<label for="intro">Сообщение</label>
+ 				<textarea id="intro" maxlength="400" class="form-control" placeholder="Введите сообщение" required onkeyup="countChar(this)"></textarea>
+			</div>
+			<div  id="num" ></div>
+			<br>
+			<div id="text" class="text-danger"></div>
+			<button type="button" onclick="check()" name="send" id="send"
+			class="btn btn-primary">Отправить</button>
+ 		</form>
+ 	<h4>Коментарии</h4>
+ 	<ul id="articles">
+ 		
+ 	</ul>
+ </div>
+
+<script>
+ function check() {
+ 	var radios = document.getElementsByName('type');
+ 	for (var i = 0, length = radios.length; i < length; i++) {
+ 	if (radios[i].checked) {
+ 	var type = radios[i].value;
+ 		
+ 		break;
+ 		}
+ }
+  	var name = document.getElementById("name").value;
+ 	var intro = document.getElementById("intro").value;
+ 	var email = document.getElementById("email").value;
+ 	var number = document.getElementById("number").value;
+ 	var text = document.getElementById("text").value;
+
+ 	if (name == "")
+ 		document.getElementById("text").innerHTML = "Введите имя<br><br>";	
+  	else if (email == "")
+  		document.getElementById("text").innerHTML = "Введите email<br><br>";
+ 	else if (email.search("@") == -1)
+ 		document.getElementById("text").innerHTML = "Введите @<br><br>";
+   	else if (number == "")
+   		document.getElementById("text").innerHTML = "Введите номер<br><br>";
+ 	else if (intro == "")
+ 		document.getElementById("text").innerHTML = "Введите сообщение<br><br>";
+
+ 	else {
+ 		document.getElementById("articles").innerHTML = "Имя: " + name + "<br>" +"Email: "+ email + "<br>" + "Телефон: "+ number + "<br>" + intro;
+		document.getElementById("name").value = "";
+		document.getElementById("intro").value = "";
+		document.getElementById("email").value = "";
+		document.getElementById("number").value = "";
+		
+
+        }
+ }
+ $('#intro').keyup(function () {
+  	var max = 400;
+  	var len = $(this).val().length;
+    	var char =  max - len;
+    	$('#num').text(char +"/400" );
+    	$("#num").value = "";
+  
+
+});
+ </script>
+</body>
+</html>
+
+
+	

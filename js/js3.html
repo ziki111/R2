@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<style>
+	.addBtn {
+	  padding: 10px;
+	  width: 20%;
+	  background: green;
+	  color: #ffffff;
+	  float: left;
+	  text-align: center;
+	  font-size: 16px;
+	  cursor: pointer;
+	  margin-left:10px;
+
+	  border-radius: 10px;
+}
+	input {
+		padding: 10px;
+		border-radius: 10px;
+		width: 20%;
+		float: left;
+		font-size: 16px;
+		border-color:green;
+}
+	ul li {
+  		cursor: pointer;
+  		position: relative;
+  		padding:0px 0px 0px 0px;
+  		font-size: 18px;
+  		list-style-type:decimal;
+
+}
+
+ 	.header{ 
+    	float: center; 
+    	margin: 60px 0px 0px 500px;
+
+ }
+ 	#myUL{
+ 		float: center; 
+    	margin: 60px 0px 0px 500px;
+ 	}
+
+</style>
+<body>
+	<div id="myDIV" class="header" > 
+  		<h1>Список дел</h1><br>
+  		<input type="text" id="myInput" placeholder="Название...">
+  		<span onclick="newElement()" class="addBtn">Добавить</span>
+	</div>
+<br>
+<ul  id="myUL"> 
+ 
+</ul>
+
+<script>
+var div = document.querySelector('#myUL');
+ 
+div.addEventListener('click', e => {
+    div.removeChild(e.target);
+})
+
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("Вы должны что-то написать!");
+  } else {
+   document.getElementById("myUL").appendChild(li);
+  }
+ document.getElementById("myInput").value = "";
+
+
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+     var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}
+</script>
+</body>
+</html>		
